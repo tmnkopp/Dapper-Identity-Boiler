@@ -1,4 +1,4 @@
-﻿using Dapper_Identity_Boiler.Models;
+﻿using DIB.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Dapper_Identity_Boiler.Controllers
+namespace DIB.Controllers
 {
     public class HomeController : Controller
     {

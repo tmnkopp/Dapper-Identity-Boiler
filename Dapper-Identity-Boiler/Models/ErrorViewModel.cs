@@ -1,6 +1,6 @@
 using System;
 
-namespace Dapper_Identity_Boiler.Models
+namespace DIB.Models
 {
     public class ErrorViewModel
     {

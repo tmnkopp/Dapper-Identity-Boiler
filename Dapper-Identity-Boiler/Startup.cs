@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Dapper_Identity_Boiler
+namespace DIB
 {
     public class Startup
     {
