@@ -6,8 +6,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using DIB.Models;
+using Microsoft.AspNetCore.Identity;
+using DIB.Identity;
 
 namespace DIB
 {
@@ -23,6 +28,16 @@ namespace DIB
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddIdentity<ApplicationUser, ApplicationUserRole>()
+                .AddRoles<ApplicationUserRole>()
+                .AddUserStore<UserStore>()
+                .AddRoleStore<RoleStore>()
+                .AddDefaultTokenProviders();
+
+            string conn = this.Configuration.GetConnectionString("DefaultConnection");
+
+
+            services.AddTransient<IDbConnection, DbConnection>();
             services.AddControllersWithViews();
         }
 
@@ -36,7 +51,6 @@ namespace DIB
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
@@ -44,6 +58,7 @@ namespace DIB
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
